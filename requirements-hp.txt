@@ -1,0 +1,8 @@
+# Keep HP's working torch/torchvision builds; setup_hp.sh constrains them.
+transformers==4.57.1
+peft==0.17.1
+accelerate==1.10.1
+huggingface-hub>=0.34,<1
+pillow>=11,<13
+pandas>=2.2,<3
+ipykernel

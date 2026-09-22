@@ -1,0 +1,12 @@
+{
+  "product_id": "pc-build-template-unvalidated",
+  "status": "design-template-only",
+  "manufacturer": "unspecified",
+  "exact_model": null,
+  "manual_url": null,
+  "compatibility_verified": false,
+  "steps": [
+    {"id": "ram_visual_check", "criterion": "Module orientation and visible latch state match the exact board manual and reference images.", "reference_images": [], "limitations": ["A camera does not prove electrical contact or system compatibility."]},
+    {"id": "gpu_visual_check", "criterion": "Visible bracket placement, retention mechanism and required connector arrangement match the exact product documentation.", "reference_images": [], "limitations": ["Hidden seating and power requirements require separate checks."]}
+  ]
+}
