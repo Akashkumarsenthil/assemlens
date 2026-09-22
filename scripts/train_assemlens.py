@@ -5,6 +5,8 @@ from PIL import Image
 from transformers import AutoProcessor, Qwen3VLForConditionalGeneration, Trainer, TrainingArguments, TrainerCallback, set_seed
 from transformers.trainer_utils import get_last_checkpoint
 from peft import LoraConfig, get_peft_model
+import peft.tuners.lora.model as peft_lora_model
+peft_lora_model.dispatch_torchao = lambda *args, **kwargs: None
 
 PROMPT = ('These two images are chronological frames from one assembly action. '
           'Identify the action. Return only JSON with string keys action, verb, object. '
@@ -98,7 +100,7 @@ def main():
         def collate(rows):
             assert len(rows)==1
             return encode(processor,rows[0])
-        training_args=TrainingArguments(output_dir=str(out/'checkpoints'),per_device_train_batch_size=1,per_device_eval_batch_size=1,gradient_accumulation_steps=2 if args.pilot else 8,num_train_epochs=2,max_steps=2 if args.pilot else -1,learning_rate=1e-4,warmup_ratio=0.05,weight_decay=0.01,bf16=True,gradient_checkpointing=True,gradient_checkpointing_kwargs={'use_reentrant':False},logging_steps=1 if args.pilot else 5,save_steps=25,save_total_limit=2,eval_strategy='steps',eval_steps=25,report_to='none',remove_unused_columns=False,label_names=['labels'],dataloader_num_workers=0,optim='adamw_torch',seed=42)
+        training_args=TrainingArguments(output_dir=str(out/'checkpoints'),per_device_train_batch_size=1,per_device_eval_batch_size=1,gradient_accumulation_steps=2 if args.pilot else 8,num_train_epochs=8,max_steps=2 if args.pilot else -1,learning_rate=1e-4,warmup_ratio=0.05,weight_decay=0.01,bf16=True,gradient_checkpointing=True,gradient_checkpointing_kwargs={'use_reentrant':False},logging_steps=1 if args.pilot else 5,save_steps=300,save_total_limit=2,eval_strategy='steps',eval_steps=300,report_to='none',remove_unused_columns=False,label_names=['labels'],dataloader_num_workers=0,optim='adamw_torch',seed=42)
         trainer=Trainer(model=model,args=training_args,train_dataset=Rows(train),eval_dataset=Rows(val),data_collator=collate,callbacks=[Budget(cfg['training_hours'])])
         checkpoint=get_last_checkpoint(str(out/'checkpoints')) if (out/'checkpoints').exists() else None
         write_status(state='training',pid=os.getpid(),resume_from=checkpoint)
