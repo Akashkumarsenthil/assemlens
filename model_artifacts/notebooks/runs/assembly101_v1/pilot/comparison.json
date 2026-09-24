@@ -1,0 +1,24 @@
+{
+  "baseline": {
+    "action_exact_match": 0.0,
+    "verb_exact_match": 0.0,
+    "object_exact_match": 0.0,
+    "valid_json_fraction": 1.0,
+    "n": 2
+  },
+  "adapted": {
+    "action_exact_match": 0.0,
+    "verb_exact_match": 0.0,
+    "object_exact_match": 0.0,
+    "valid_json_fraction": 1.0,
+    "n": 2
+  },
+  "validation_loss": {
+    "eval_loss": 1.8796818256378174,
+    "eval_runtime": 0.2655,
+    "eval_samples_per_second": 7.534,
+    "eval_steps_per_second": 7.534,
+    "epoch": 0.75
+  },
+  "scope": "action recognition on held-out recordings; not furniture defect detection"
+}

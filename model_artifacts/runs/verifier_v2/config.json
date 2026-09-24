@@ -1,0 +1,23 @@
+{
+  "root": "/home/hp15/git_happens/assemlens/runs/assembly101_heavy_v4",
+  "model": "Qwen/Qwen3-VL-4B-Instruct",
+  "dataset": "cvml-nus/assembly101",
+  "camera": "C10404_rgb.mp4",
+  "train_recordings": 64,
+  "validation_recordings": 8,
+  "segments_per_recording": 180,
+  "video_budget_gib": 90,
+  "image_side": 576,
+  "training_hours": 8,
+  "epochs": 6,
+  "learning_rate": 2e-05,
+  "eval_steps": 50,
+  "generation_eval_samples": 160,
+  "loss_eval_samples": 256,
+  "frames_per_action": 4,
+  "lora_rank": 32,
+  "lora_alpha": 64,
+  "processor_max_pixels": 331776,
+  "dataset_revision": "bfc15ea5e3f0bc8f8c232af6c1b45aa137a9d967",
+  "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+}

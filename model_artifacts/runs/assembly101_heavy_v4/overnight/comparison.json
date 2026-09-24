@@ -1,0 +1,39 @@
+{
+  "baseline": {
+    "action_exact_match": 0.0,
+    "verb_exact_match": 0.0,
+    "object_exact_match": 0.0,
+    "valid_json_fraction": 1.0,
+    "n": 160,
+    "action_macro_f1_supported_labels": 0.0,
+    "verb_macro_f1_supported_labels": 0.0,
+    "object_macro_f1_supported_labels": 0.0,
+    "generation_seconds_p50": 1.4713531060115201,
+    "generation_seconds_p95": 1.6220162709942088,
+    "recordings": 8
+  },
+  "adapted": {
+    "action_exact_match": 0.1375,
+    "verb_exact_match": 0.325,
+    "object_exact_match": 0.2375,
+    "valid_json_fraction": 1.0,
+    "n": 160,
+    "action_macro_f1_supported_labels": 0.05944644533445438,
+    "verb_macro_f1_supported_labels": 0.20305788374644398,
+    "object_macro_f1_supported_labels": 0.107362597842474,
+    "generation_seconds_p50": 1.5056677300017327,
+    "generation_seconds_p95": 1.7228313889936544,
+    "recordings": 8
+  },
+  "validation_loss": {
+    "eval_loss": 0.22370676696300507,
+    "eval_runtime": 295.6032,
+    "eval_samples_per_second": 3.366,
+    "eval_steps_per_second": 3.366,
+    "epoch": 1.3770158133709096
+  },
+  "best_checkpoint": "/home/hp15/git_happens/assemlens/runs/assembly101_heavy_v4/overnight/checkpoints/checkpoint-950",
+  "global_step": 1100,
+  "epoch": 1.3770158133709096,
+  "scope": "action recognition on held-out recordings; not furniture defect detection"
+}

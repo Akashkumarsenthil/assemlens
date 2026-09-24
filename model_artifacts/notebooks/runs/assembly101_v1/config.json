@@ -1,0 +1,14 @@
+{
+  "root": "/home/hp15/git_happens/assemlens/notebooks/runs/assembly101_v1",
+  "model": "Qwen/Qwen3-VL-4B-Instruct",
+  "dataset": "cvml-nus/assembly101",
+  "camera": "C10404_rgb.mp4",
+  "train_recordings": 4,
+  "validation_recordings": 2,
+  "segments_per_recording": 80,
+  "video_budget_gib": 8,
+  "image_side": 448,
+  "training_hours": 6,
+  "dataset_revision": "bfc15ea5e3f0bc8f8c232af6c1b45aa137a9d967",
+  "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+}

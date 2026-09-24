@@ -1,0 +1,101 @@
+{
+  "baseline": {
+    "n": 117,
+    "accuracy": 0.8461538461538461,
+    "macro_f1": 0.49109653233364575,
+    "valid_json_fraction": 1.0,
+    "abstention_fraction": 0.0,
+    "majority_baseline": 0.7863247863247863,
+    "classes": {
+      "correct": {
+        "precision": 0.8823529411764706,
+        "recall": 0.9782608695652174,
+        "f1": 0.9278350515463918
+      },
+      "mistake": {
+        "precision": 0.6,
+        "recall": 0.5,
+        "f1": 0.5454545454545454
+      },
+      "correction": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "confusion_matrix": {
+      "correct": {
+        "correct": 90,
+        "mistake": 2,
+        "correction": 0,
+        "uncertain": 0,
+        "invalid_json": 0
+      },
+      "mistake": {
+        "correct": 9,
+        "mistake": 9,
+        "correction": 0,
+        "uncertain": 0,
+        "invalid_json": 0
+      },
+      "correction": {
+        "correct": 3,
+        "mistake": 4,
+        "correction": 0,
+        "uncertain": 0,
+        "invalid_json": 0
+      }
+    }
+  },
+  "adapted": {
+    "n": 117,
+    "accuracy": 0.8547008547008547,
+    "macro_f1": 0.5664271737570167,
+    "valid_json_fraction": 1.0,
+    "abstention_fraction": 0.0,
+    "majority_baseline": 0.7863247863247863,
+    "classes": {
+      "correct": {
+        "precision": 0.9292929292929293,
+        "recall": 1.0,
+        "f1": 0.9633507853403142
+      },
+      "mistake": {
+        "precision": 0.6666666666666666,
+        "recall": 0.1111111111111111,
+        "f1": 0.19047619047619047
+      },
+      "correction": {
+        "precision": 0.4,
+        "recall": 0.8571428571428571,
+        "f1": 0.5454545454545454
+      }
+    },
+    "confusion_matrix": {
+      "correct": {
+        "correct": 92,
+        "mistake": 0,
+        "correction": 0,
+        "uncertain": 0,
+        "invalid_json": 0
+      },
+      "mistake": {
+        "correct": 7,
+        "mistake": 2,
+        "correction": 9,
+        "uncertain": 0,
+        "invalid_json": 0
+      },
+      "correction": {
+        "correct": 0,
+        "mistake": 1,
+        "correction": 6,
+        "uncertain": 0,
+        "invalid_json": 0
+      }
+    }
+  },
+  "best_checkpoint": "/home/hp15/git_happens/assemlens/runs/verifier_v2/training/checkpoints/checkpoint-250",
+  "steps": 390,
+  "scope": "annotation-assisted validation; no final test evaluation"
+}

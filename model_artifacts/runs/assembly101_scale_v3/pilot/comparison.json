@@ -1,0 +1,39 @@
+{
+  "baseline": {
+    "action_exact_match": 0.0,
+    "verb_exact_match": 0.0,
+    "object_exact_match": 0.0,
+    "valid_json_fraction": 1.0,
+    "n": 4,
+    "action_macro_f1_supported_labels": 0.0,
+    "verb_macro_f1_supported_labels": 0.0,
+    "object_macro_f1_supported_labels": 0.0,
+    "generation_seconds_p50": 1.27104939801211,
+    "generation_seconds_p95": 1.9413131819892442,
+    "recordings": 4
+  },
+  "adapted": {
+    "action_exact_match": 0.0,
+    "verb_exact_match": 0.0,
+    "object_exact_match": 0.0,
+    "valid_json_fraction": 1.0,
+    "n": 4,
+    "action_macro_f1_supported_labels": 0.0,
+    "verb_macro_f1_supported_labels": 0.0,
+    "object_macro_f1_supported_labels": 0.0,
+    "generation_seconds_p50": 1.3822139269905165,
+    "generation_seconds_p95": 1.4778363039949909,
+    "recordings": 4
+  },
+  "validation_loss": {
+    "eval_loss": 2.289247512817383,
+    "eval_runtime": 0.5571,
+    "eval_samples_per_second": 7.18,
+    "eval_steps_per_second": 7.18,
+    "epoch": 0.25
+  },
+  "best_checkpoint": null,
+  "global_step": 2,
+  "epoch": 0.25,
+  "scope": "action recognition on held-out recordings; not furniture defect detection"
+}
