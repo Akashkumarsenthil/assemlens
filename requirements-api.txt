@@ -1,0 +1,4 @@
+# Install in the existing HP project environment; preserve its vendor CUDA torch.
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+python-multipart>=0.0.20,<1

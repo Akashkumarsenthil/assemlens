@@ -17,8 +17,11 @@ This is an early engineering baseline, not a finished assembly-verification prod
 | Before/after action-recognition validation | Implemented; no measured results committed yet |
 | Deterministic edge/cloud routing policy | Implemented and unit tested; cloud client not connected |
 | Repeated-capture step-verification gate | Implemented and unit tested; requires visual-model integration |
-| Furniture correction UI, QR flow, cloud endpoint | Planned |
+| Frontend, QR/product-ID lookup and Nano API | Implemented for preview and experimental live comparison; reviewed product references required for guided checks |
+| Cloud endpoint | Planned |
 | HP hardware / PC assembly support | Planned; product template only |
+
+The [frontend](frontend/README.md) runs from the [Nano API](docs/nano_api.md). Preview results are simulated. Live comparison sends a user-selected reference and current photo to the base Qwen3-VL model on the Nano; it is experimental and does not automatically advance a step. No reviewed jeep product package is included yet.
 
 **The current training task recognizes an assembly action from two frames. It does not yet judge whether furniture or a PC is assembled correctly.** The next model experiment needs product-specific state/error labels and reference images.
 
