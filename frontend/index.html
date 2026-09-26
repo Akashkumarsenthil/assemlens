@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="AssemLens assembly guidance interface">
+  <title>AssemLens — See the step</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./showcase.css">
+  <link rel="stylesheet" href="./coach-preview.css">
+  <script src="./app.js" defer></script>
+  <script src="./coach-preview.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="AssemLens home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>assem<span class="brand-accent">lens</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="header-note"><span class="header-note-dot"></span> DESIGNED FOR HP ZGX NANO</span>
+        <span class="mode-chip" id="mode-chip">PREVIEW MODE</span>
+        <button class="icon-button" id="settings-button" type="button" aria-label="Open settings" title="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="m19.4 15 .1.1 1.3 1-1.8 3.1-1.5-.6a8.8 8.8 0 0 1-2.2 1.3L15 21.5H9l-.3-1.6a8.8 8.8 0 0 1-2.2-1.3l-1.5.6-1.8-3.1 1.3-1a8.8 8.8 0 0 1 0-2.6l-1.3-1L5 8.4l1.5.6a8.8 8.8 0 0 1 2.2-1.3L9 6h6l.3 1.7A8.8 8.8 0 0 1 17.5 9l1.5-.6 1.8 3.1-1.3 1a8.8 8.8 0 0 1 0 2.5Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="screen active" id="home-screen" aria-labelledby="home-title">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> YOUR SECOND SET OF EYES</p>
+            <h1 id="home-title">See the step.<br><em>Catch the<br>mismatch.</em></h1>
+            <p class="hero-text">A visual assembly companion that turns a confusing build into one clear next move.</p>
+            <div class="hero-actions">
+              <button class="button button-primary" id="preview-button" type="button">Explore the interactive demo <span class="arrow">↗</span></button>
+              <button class="button button-outline" id="coach-preview-button" type="button">Try the guided coach <span class="arrow">→</span></button>
+              <button class="button button-outline" id="scan-button" type="button"><span class="button-icon">▦</span> Scan a product QR</button>
+              <button class="button button-outline" id="live-button" type="button" hidden>Compare with Nano AI <span class="arrow">→</span></button>
+            </div>
+            <p class="demo-disclosure"><span class="disclosure-dot"></span> Interactive preview uses simulated results.</p>
+          </div>
+          <div class="hero-visual" aria-label="Illustration of an assembly in progress">
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="visual-topline"><span class="visual-index">ASSEMBLY / 001</span><span class="visual-concept">CONCEPT VISUAL</span></div>
+            <img class="assembly-art" src="./assembly-illustration.svg" alt="Stylized toy assembly with parts shown apart" width="880" height="670">
+            <div class="visual-floating-card" aria-hidden="true"><span class="floating-icon">⌕</span><span><strong>Observe the state</strong><small>One visible step at a time</small></span></div>
+            <div class="visual-bottomline"><span><i></i> CAMERA INPUT</span><span>→</span><span>EDGE AI</span><span>→</span><span>NEXT ACTION</span></div>
+          </div>
+        </div>
+        <div class="story-intro"><p class="eyebrow">THE EXPERIENCE</p><h2>Clarity, built into every step.</h2><p>Capture the workspace. Understand what changed. Keep moving.</p></div>
+        <div class="feature-strip">
+          <div><span class="feature-number">01 / FIND</span><strong>Start with the right guide</strong><small>Scan a product code to load its supported steps.</small></div>
+          <div><span class="feature-number">02 / OBSERVE</span><strong>Show the workspace</strong><small>Capture a clear view of the parts that matter.</small></div>
+          <div><span class="feature-number">03 / RESPOND</span><strong>Know the next move</strong><small>See the evidence and a short corrective action.</small></div>
+        </div>
+      </section>
+
+      <section class="screen" id="scan-screen" aria-labelledby="scan-title">
+        <button class="back-button" data-back="home" type="button">← <span>Back</span></button>
+        <div class="section-heading"><p class="eyebrow">GET STARTED</p><h1 id="scan-title">Find your product.</h1><p>Point your camera at the AssemLens QR code, or enter its product ID.</p></div>
+        <div class="scan-layout">
+          <div class="scanner-panel">
+            <div class="camera-stage scanner-stage" id="scanner-stage">
+              <video id="qr-video" autoplay muted playsinline aria-label="QR scanning camera"></video>
+              <div class="scan-guide" aria-hidden="true"><span></span><span></span><span></span><span></span><i class="scan-beam"></i></div>
+              <div class="camera-placeholder" id="scanner-placeholder"><span class="placeholder-icon">▦</span><strong>Camera is off</strong><small>Start the scanner to read a product code</small></div>
+            </div>
+            <button class="button button-dark full-width" id="start-scanner" type="button">Start QR scanner</button>
+            <p class="support-text" id="scanner-message" role="status">Camera access needs HTTPS or localhost. Manual entry is always available.</p>
+          </div>
+          <form class="manual-panel" id="product-form">
+            <div class="panel-icon">⌗</div><h2>Enter a product ID</h2><p>Use the short code printed beside the QR.</p>
+            <label for="product-id">Product ID</label>
+            <input id="product-id" name="productId" autocomplete="off" spellcheck="false" placeholder="e.g. fyd-jeep-v1" required maxlength="64">
+            <button class="button button-primary full-width" type="submit">Continue <span class="arrow">→</span></button>
+            <p class="form-error" id="product-error" role="alert" hidden></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="screen" id="work-screen" aria-labelledby="work-title">
+        <button class="back-button" data-back="home" type="button">← <span>Products</span></button>
+        <div class="workspace-header">
+          <div><p class="eyebrow" id="product-kicker">PRODUCT CHECK</p><h1 id="work-title">FYD take-apart jeep</h1><p id="product-description">One visible checkpoint at a time.</p></div>
+          <span class="step-pill" id="step-pill">STEP 01 / 01</span>
+        </div>
+        <div class="workflow-rail" aria-label="Workflow progress"><div class="rail-step rail-step-done"><span>01</span><strong>Understand the step</strong></div><div class="rail-connector"></div><div class="rail-step rail-step-current"><span>02</span><strong>Show the workspace</strong></div><div class="rail-connector"></div><div class="rail-step" id="review-stage"><span>03</span><strong>Review the result</strong></div></div>
+        <div class="workspace-grid">
+          <div class="capture-column">
+            <div class="camera-stage capture-stage" id="capture-stage">
+              <div class="capture-label"><span class="capture-label-dot"></span> CURRENT VIEW <span class="capture-label-number">CAM 01</span></div>
+              <video id="capture-video" autoplay muted playsinline aria-label="Assembly camera preview"></video>
+              <img id="captured-image" alt="Your selected assembly image" hidden>
+              <div class="capture-reticle" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="camera-placeholder" id="capture-placeholder"><span class="placeholder-icon">◎</span><strong>Your workspace, in focus.</strong><small>Start the camera or choose a photo</small></div>
+              <span class="live-tag" id="live-tag" hidden><i></i> LIVE VIEW</span>
+            </div>
+            <div class="capture-actions">
+              <button class="button button-dark" id="camera-button" type="button">Start camera</button>
+              <button class="button button-outline" id="capture-button" type="button" disabled>Capture frame</button>
+              <label class="button button-text" for="photo-input">Choose photo <span>↗</span></label>
+              <input id="photo-input" type="file" accept="image/*" hidden>
+            </div>
+            <p class="support-text" id="camera-message" role="status">Use a clear view with the relevant parts visible.</p>
+          </div>
+          <div class="guidance-column">
+            <div class="step-card" id="step-card"><span class="card-index">CURRENT CHECKPOINT</span><h2 id="step-title">Visible state check</h2><p id="step-instruction">Compare the current assembly with an approved reference image.</p><div class="criteria" id="step-criteria"><span class="criteria-dot"></span><span>Confirm the visible parts and their relationship.</span></div></div>
+            <div class="step-card lab-panel" id="lab-panel" hidden><span class="card-index">EXPERIMENTAL · NANO GPU</span><h2>Set the comparison goal</h2><p>Upload a correct reference, then capture or upload the current view. The model checks only what is visible.</p><label for="lab-instruction">What should the current state show?</label><input id="lab-instruction" maxlength="500" placeholder="e.g. The red block sits to the left of the blue block"><label for="lab-criteria">Visible conditions to confirm</label><textarea id="lab-criteria" maxlength="500" rows="3" placeholder="Describe the parts and relationships that must be visible"></textarea></div>
+            <div class="reference-card" id="reference-card"><div class="reference-image" id="reference-image"><span>◎</span></div><div><span class="card-index">REFERENCE</span><strong id="reference-title">Approved step photo</strong><small id="reference-caption">A product reference will appear here when configured.</small></div></div>
+            <label class="button button-outline full-width" id="reference-upload-button" for="reference-input" hidden>Choose reference photo <span class="arrow">↗</span></label><input id="reference-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+            <button class="button button-primary full-width analyze-button" id="analyze-button" type="button" disabled>Check this view <span class="arrow">→</span></button>
+            <p class="privacy-note">Images are sent to the selected AssemLens server for analysis. The live preview stays in your browser.</p>
+          </div>
+        </div>
+        <div class="result-card" id="result-card" aria-live="polite" hidden>
+          <span class="result-icon" id="result-icon">✓</span><div class="result-copy"><span class="card-index" id="result-kicker">VIEW CHECKED</span><h2 id="result-title">Result</h2><p id="result-evidence"></p><strong id="result-action"></strong><small id="result-meta"></small></div>
+          <button class="button button-outline" id="check-again-button" type="button">Check another view</button>
+        </div>
+      </section>
+
+      <section class="screen coach-screen" id="coach-screen" aria-labelledby="coach-title">
+        <div class="coach-topline"><button class="back-button" id="coach-back" type="button">← <span>Home</span></button><span class="coach-preview-chip">SIMULATED GUIDED PREVIEW</span></div>
+        <div class="coach-heading"><div><p class="eyebrow">FOUR STEPS / ONE CLEAR NEXT MOVE</p><h1 id="coach-title">Build with a coach.</h1><p>Explore how the step-by-step experience works. Every result on this screen is simulated; no image is analyzed.</p></div><div class="coach-mode-switch" role="group" aria-label="Coach checking mode"><button type="button" id="coach-auto">Auto</button><button type="button" id="coach-manual" class="selected">Manual</button></div></div>
+        <div class="coach-grid" id="coach-active-view">
+          <div class="coach-primary">
+            <div class="coach-step-heading"><div><span id="coach-step-count" class="card-index">STEP 01 / 04</span><h2 id="coach-step-title">Attach the frame</h2></div><span id="coach-state-badge" class="coach-state-badge">WORKING</span></div>
+            <div class="coach-visual-pair"><div class="coach-camera-card"><div class="coach-camera-top"><span><i></i> WORKSPACE VIEW</span><span id="coach-camera-status">CAMERA OFF</span></div><video id="coach-video" autoplay muted playsinline aria-label="Guided demo camera preview" hidden></video><img id="coach-upload-preview" alt="Photo selected for the guided preview" hidden><div class="coach-camera-empty" id="coach-camera-empty"><span>◎</span><strong>Keep the current step in view.</strong><small>Camera and photo controls are for exploring the interface only.</small></div></div><div class="coach-reference-card"><span class="card-index">REFERENCE CONCEPT</span><img src="./assembly-illustration.svg" alt="Concept drawing of toy jeep parts"><small>Reviewed step photos are needed before live verification.</small></div></div>
+            <div class="coach-camera-controls"><button class="button button-dark" type="button" id="coach-camera-button">Start camera</button><label for="coach-photo-input" class="button button-outline">Choose photo</label><input id="coach-photo-input" type="file" accept="image/*" hidden><label class="coach-camera-picker" for="coach-camera-select">Camera <select id="coach-camera-select"></select></label></div><p class="support-text" id="coach-camera-message" role="status">No photos leave your browser in this preview.</p>
+            <div class="coach-status" id="coach-status" aria-live="polite"><div><span id="coach-status-label">WORKING</span><strong id="coach-status-message">Build this step, then press Done.</strong><p id="coach-status-hint"></p></div><div class="coach-confirmations"><span id="coach-confirmation-dots">○ ○</span><small id="coach-confirmation-text">0 of 2 confirmations</small></div></div>
+            <div class="coach-actions"><button class="button button-primary" type="button" id="coach-done">Done with this step <span class="arrow">→</span></button><span id="coach-countdown" role="status"></span><button class="button button-text" type="button" id="coach-restart">Restart build</button></div>
+            <div class="coach-scenarios"><div><span class="card-index">SIMULATE THE NEXT CAMERA CHECK</span><p>Choose a scenario to see how the rules respond.</p></div><div class="coach-scenario-buttons"><button type="button" data-coach-result="match">Looks right</button><button type="button" data-coach-result="mismatch">Needs a fix</button><button type="button" data-coach-result="unclear">Unclear view</button></div></div>
+          </div>
+          <aside class="coach-sidebar"><div class="coach-side-card"><span class="card-index">CURRENT INSTRUCTION</span><p id="coach-instruction"></p><strong>Visible condition</strong><p id="coach-criteria"></p></div><div class="coach-side-card"><span class="card-index">YOUR PROGRESS</span><ol class="coach-step-list" id="coach-step-list"></ol></div><div class="coach-side-card coach-reasoning"><span class="card-index">WHY THE COACH RESPONDED</span><div><span>Classifier</span><strong id="coach-reason-classifier">—</strong></div><div><span>Step check</span><strong id="coach-reason-agent">—</strong></div><div><span>Rule</span><strong id="coach-reason-rule">Waiting for a simulated check</strong></div><p id="coach-reason-evidence"></p></div><details class="coach-side-card coach-history"><summary>Check history</summary><ol id="coach-history-list"></ol></details></aside>
+        </div>
+        <div class="coach-complete" id="coach-complete" hidden><span>✓</span><h2>Build complete.</h2><p>All four preview steps passed their simulated confirmation rules.</p><button class="button button-primary" id="coach-build-again" type="button">Build again <span class="arrow">→</span></button></div>
+      </section>
+    </main>
+
+    <footer class="footer"><span>ASSEMLENS <span class="footer-dot">●</span> SEE THE STEP. CATCH THE MISMATCH.</span><span>Designed for on-device AI</span></footer>
+  </div>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <form method="dialog" class="settings-content" id="settings-form">
+      <div class="dialog-heading"><div><p class="eyebrow">CONNECTION</p><h2 id="settings-title">Settings</h2></div><button class="icon-button" value="cancel" aria-label="Close settings" type="submit">×</button></div>
+      <label class="radio-row"><input type="radio" name="mode" value="preview"><span><strong>UI preview</strong><small>Simulated results for checking the interface</small></span></label>
+      <label class="radio-row" id="api-mode-row"><input type="radio" name="mode" value="api" disabled><span><strong>Nano API</strong><small id="api-mode-note">Live inference is disabled on this server</small></span></label>
+      <label for="api-base">API base URL</label><input id="api-base" type="url" placeholder="https://nano.example.com" autocomplete="url"><small class="settings-hint">Leave blank when the frontend and API share one origin.</small>
+      <button class="button button-primary full-width" id="save-settings" value="save" type="submit">Save settings</button>
+    </form>
+  </dialog>
+
+  <dialog id="preview-dialog" aria-labelledby="preview-title">
+    <div class="settings-content"><p class="eyebrow">DIRECT THE DEMO</p><h2 id="preview-title">Choose what the camera sees</h2><p>These are simulated outcomes for reviewing the interface. No AI analysis runs in preview mode.</p><div class="preview-choices"><button type="button" data-preview-result="mismatch"><span class="scenario-icon mismatch-icon">!</span><span><strong>Show a mismatch</strong><small>Something visible needs correction</small></span><span class="scenario-arrow">→</span></button><button type="button" data-preview-result="matches"><span class="scenario-icon match-icon">✓</span><span><strong>Show a match</strong><small>The visible state looks right</small></span><span class="scenario-arrow">→</span></button><button type="button" data-preview-result="uncertain"><span class="scenario-icon uncertain-icon">?</span><span><strong>Show an unclear view</strong><small>Ask for another angle</small></span><span class="scenario-arrow">→</span></button></div><button class="button button-text" id="cancel-preview" type="button">Cancel</button></div>
+  </dialog>
+</body>
+</html>
