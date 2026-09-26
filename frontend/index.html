@@ -8,7 +8,9 @@
   <title>AssemLens — See the step</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./showcase.css">
+  <link rel="stylesheet" href="./coach-preview.css">
   <script src="./app.js" defer></script>
+  <script src="./coach-preview.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -35,6 +37,7 @@
             <p class="hero-text">A visual assembly companion that turns a confusing build into one clear next move.</p>
             <div class="hero-actions">
               <button class="button button-primary" id="preview-button" type="button">Explore the interactive demo <span class="arrow">↗</span></button>
+              <button class="button button-outline" id="coach-preview-button" type="button">Try the guided coach <span class="arrow">→</span></button>
               <button class="button button-outline" id="scan-button" type="button"><span class="button-icon">▦</span> Scan a product QR</button>
               <button class="button button-outline" id="live-button" type="button" hidden>Compare with Nano AI <span class="arrow">→</span></button>
             </div>
@@ -117,6 +120,23 @@
           <span class="result-icon" id="result-icon">✓</span><div class="result-copy"><span class="card-index" id="result-kicker">VIEW CHECKED</span><h2 id="result-title">Result</h2><p id="result-evidence"></p><strong id="result-action"></strong><small id="result-meta"></small></div>
           <button class="button button-outline" id="check-again-button" type="button">Check another view</button>
         </div>
+      </section>
+
+      <section class="screen coach-screen" id="coach-screen" aria-labelledby="coach-title">
+        <div class="coach-topline"><button class="back-button" id="coach-back" type="button">← <span>Home</span></button><span class="coach-preview-chip">SIMULATED GUIDED PREVIEW</span></div>
+        <div class="coach-heading"><div><p class="eyebrow">FOUR STEPS / ONE CLEAR NEXT MOVE</p><h1 id="coach-title">Build with a coach.</h1><p>Explore how the step-by-step experience works. Every result on this screen is simulated; no image is analyzed.</p></div><div class="coach-mode-switch" role="group" aria-label="Coach checking mode"><button type="button" id="coach-auto">Auto</button><button type="button" id="coach-manual" class="selected">Manual</button></div></div>
+        <div class="coach-grid" id="coach-active-view">
+          <div class="coach-primary">
+            <div class="coach-step-heading"><div><span id="coach-step-count" class="card-index">STEP 01 / 04</span><h2 id="coach-step-title">Attach the frame</h2></div><span id="coach-state-badge" class="coach-state-badge">WORKING</span></div>
+            <div class="coach-visual-pair"><div class="coach-camera-card"><div class="coach-camera-top"><span><i></i> WORKSPACE VIEW</span><span id="coach-camera-status">CAMERA OFF</span></div><video id="coach-video" autoplay muted playsinline aria-label="Guided demo camera preview" hidden></video><img id="coach-upload-preview" alt="Photo selected for the guided preview" hidden><div class="coach-camera-empty" id="coach-camera-empty"><span>◎</span><strong>Keep the current step in view.</strong><small>Camera and photo controls are for exploring the interface only.</small></div></div><div class="coach-reference-card"><span class="card-index">REFERENCE CONCEPT</span><img src="./assembly-illustration.svg" alt="Concept drawing of toy jeep parts"><small>Reviewed step photos are needed before live verification.</small></div></div>
+            <div class="coach-camera-controls"><button class="button button-dark" type="button" id="coach-camera-button">Start camera</button><label for="coach-photo-input" class="button button-outline">Choose photo</label><input id="coach-photo-input" type="file" accept="image/*" hidden><label class="coach-camera-picker" for="coach-camera-select">Camera <select id="coach-camera-select"></select></label></div><p class="support-text" id="coach-camera-message" role="status">No photos leave your browser in this preview.</p>
+            <div class="coach-status" id="coach-status" aria-live="polite"><div><span id="coach-status-label">WORKING</span><strong id="coach-status-message">Build this step, then press Done.</strong><p id="coach-status-hint"></p></div><div class="coach-confirmations"><span id="coach-confirmation-dots">○ ○</span><small id="coach-confirmation-text">0 of 2 confirmations</small></div></div>
+            <div class="coach-actions"><button class="button button-primary" type="button" id="coach-done">Done with this step <span class="arrow">→</span></button><span id="coach-countdown" role="status"></span><button class="button button-text" type="button" id="coach-restart">Restart build</button></div>
+            <div class="coach-scenarios"><div><span class="card-index">SIMULATE THE NEXT CAMERA CHECK</span><p>Choose a scenario to see how the rules respond.</p></div><div class="coach-scenario-buttons"><button type="button" data-coach-result="match">Looks right</button><button type="button" data-coach-result="mismatch">Needs a fix</button><button type="button" data-coach-result="unclear">Unclear view</button></div></div>
+          </div>
+          <aside class="coach-sidebar"><div class="coach-side-card"><span class="card-index">CURRENT INSTRUCTION</span><p id="coach-instruction"></p><strong>Visible condition</strong><p id="coach-criteria"></p></div><div class="coach-side-card"><span class="card-index">YOUR PROGRESS</span><ol class="coach-step-list" id="coach-step-list"></ol></div><div class="coach-side-card coach-reasoning"><span class="card-index">WHY THE COACH RESPONDED</span><div><span>Classifier</span><strong id="coach-reason-classifier">—</strong></div><div><span>Step check</span><strong id="coach-reason-agent">—</strong></div><div><span>Rule</span><strong id="coach-reason-rule">Waiting for a simulated check</strong></div><p id="coach-reason-evidence"></p></div><details class="coach-side-card coach-history"><summary>Check history</summary><ol id="coach-history-list"></ol></details></aside>
+        </div>
+        <div class="coach-complete" id="coach-complete" hidden><span>✓</span><h2>Build complete.</h2><p>All four preview steps passed their simulated confirmation rules.</p><button class="button button-primary" id="coach-build-again" type="button">Build again <span class="arrow">→</span></button></div>
       </section>
     </main>
 

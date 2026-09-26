@@ -12,6 +12,8 @@ ASSEMLENS_ALLOW_GPU_INFERENCE=1 python -m uvicorn assemlens_api.server:app --hos
 
 Omit `ASSEMLENS_ALLOW_GPU_INFERENCE=1` for preview-only mode. Open `http://localhost:8000`. Camera access on a phone requires a secure HTTPS origin; `localhost` is the development exception. Browsers without `BarcodeDetector` can use the manual product ID field. The sample preview ID is `fyd-jeep-v1`. See [the Nano API guide](../docs/nano_api.md) for product packages and GPU inference.
 
+The **Try the guided coach** button opens a frontend-only preview of the four-step jeep workflow. Manual and auto modes, camera selection, local photo preview, confirmation counts, reasoning, progress, and history can be explored with simulated observations. Its controls do not call port 8001 or the GPU, and no preview result is a model judgment. The live coach will be connected after the backend work is ready.
+
 The **Compare with Nano AI** button opens an experimental live comparison. Upload a correct reference photo, describe the visible goal, then capture or upload the current view. This calls the Nano GPU model; it does not advance a product step or establish assembly safety. The first request can take longer while the model loads.
 
 The Settings dialog switches between UI preview and Nano API mode. With a blank API base URL, the browser calls the same origin. A reviewed product package and reference image are required before Nano API mode can analyze a product.
